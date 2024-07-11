@@ -1,35 +1,91 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography, Container } from '@mui/material';
+import Header from '../../components/Header';
 import TempleteCard from './TempleteCard';
 import temp from '../../Data/data';
-import Header from '../../components/Header'
 import { settemplate, updatetemplate } from '../../Redux/actions/settemplate';
 
+// Swiper modules
+import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
+
+const useStyles = makeStyles((theme) => ({
+  header: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(4),
+    textAlign: 'center',
+  },
+  subheader: {
+    marginBottom: theme.spacing(4),
+    textAlign: 'center',
+  },
+  swiperContainer: {
+    maxWidth: '40%',
+    height: '700px', // Set the desired height here
+    margin: 'auto', // Center horizontally
+    marginBottom: theme.spacing(8),
+    position: 'relative',
+  },
+}));
+
 function Templetes(props) {
+  const classes = useStyles();
 
   // State to hold the templates
-  const [template, setTemplate] = useState(temp);
+  const [templates, setTemplates] = useState(temp);
 
   return (
     <>
       {/* Header Component for Navigation */}
       <Header />
-      <h1 className="mt-8 font-bold text-3xl text-center md:text-5xl">
-        Templates
-      </h1>
-      <p className="mt-4 font-bold text-xl text-center md:text-2xl">
-        Select a Template to Get Started
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-7xl mt-8 px-8">
-        {/* Iterate over each template and render a TemplateCard component */}
-        {template.map((templates) => (
-          <TempleteCard
-            key={templates.key}
-            data={templates.data}
-            thumbnail={templates.thumbnail}
-          />
-        ))}
-      </div>
+      <Container>
+        <Typography variant="h3" className={classes.header}>
+          Templates
+        </Typography>
+       
+        <div className={classes.swiperContainer}>
+          <Swiper
+            modules={[Navigation, Pagination, EffectCoverflow]}
+            spaceBetween={30}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            effect="coverflow"
+            centeredSlides={true}
+            loop={true}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            }}
+          >
+            {templates.map((template) => (
+              <SwiperSlide key={template.key}>
+                <TempleteCard
+                  data={template.data}
+                  thumbnail={template.thumbnail}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <Grid
+          container
+          spacing={4}
+          justifyContent="center"
+          alignItems="center"
+        >
+          {/* Render other template cards if needed */}
+        </Grid>
+      </Container>
     </>
   );
 }
@@ -37,7 +93,7 @@ function Templetes(props) {
 // Map the Redux state to component props
 const mapStateToProps = (state) => {
   return {
-    resume: state.templateReducer
+    resume: state.templateReducer,
   };
 };
 
@@ -45,7 +101,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     settemplate: (template) => dispatch(settemplate(template)),
-    updatetemplate: (template) => dispatch(updatetemplate(template))
+    updatetemplate: (template) => dispatch(updatetemplate(template)),
   };
 };
 

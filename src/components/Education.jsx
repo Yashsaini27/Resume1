@@ -12,7 +12,7 @@ const Education = (props) => {
     handleSubmit,
     formState: { errors },
     setValue,
-    watch
+    
   } = useForm();
 
   const [open, setOpen] = useState(false);

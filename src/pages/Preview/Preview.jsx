@@ -136,7 +136,7 @@ function Preview(props) {
                   border: "2px solid blue",
                   width: "10vh",
                   height: "4vh",
-                  backgroundColor: "white",
+                  backgroundColor: "blue",
                   borderRadius: "5px",
                   marginRight: "2vh",
                   Padding: "10px",

@@ -3,8 +3,10 @@ import { FaPhone, FaEnvelope, FaGlobe, FaMapMarkerAlt } from 'react-icons/fa';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import './Resume2.css';
+import { connect } from 'react-redux';
+import fieldCd from "../Redux/constants/typeCodes";
 
-const Template12 = () => {
+const Template12 = (props) => {
   const [profileImg, setProfileImg] = useState('');
   const [isEditable, setIsEditable] = useState(false);
   const resumeRef = useRef(null);
@@ -48,6 +50,28 @@ const Template12 = () => {
     resumeRef.current.querySelector('.template-12-resume-right').style.backgroundColor = color;
   };
 
+  const getcontactData = (key) => {
+    const contactdata = props.contact;
+    if (contactdata && contactdata[key]) {
+      return contactdata[key];
+    }
+    return "";
+  };
+
+  const geteducationData = (key) => {
+    const educationdata = props.education;
+    if (educationdata && educationdata[key]) {
+      return educationdata[key];
+    }
+    return "";
+  };
+
+  const experienceData = props.experience || {};
+  const experienceKeys = Object.keys(experienceData);
+  const maxKey = experienceKeys.length ? Math.max(...experienceKeys.map(Number)) : null;
+
+  const skillsData = props.skills || {};
+
   return (
     <div className='template-3-main-wrapper'>
       <div className="buttons">
@@ -83,43 +107,31 @@ const Template12 = () => {
       <div className="template-12-resume-container" contentEditable={isEditable} ref={resumeRef}>
         <div className="template-12-resume-left">
           <header className="template-12-resume-header">
-            <h1>CARMEN BELLET</h1>
-            <h2>SAP Consultant</h2>
+            <h1>{getcontactData(fieldCd.FirstName)} {getcontactData(fieldCd.LastName)}</h1>
+            <h2>{experienceData[maxKey] && experienceData[maxKey].jobTitle}</h2>
           </header>
           <section className="template-12-profile">
             <h3>PROFILE</h3>
-            <p>SAP Consultant with 5+ years of experience in developing, managing, and optimizing SAP solutions. Skilled in developing and deploying innovative solutions to drive business growth.</p>
+            <p>{getcontactData(fieldCd.Objective)}</p>
           </section>
           <section className="template-12-work-experience">
             <h3>WORK EXPERIENCE</h3>
-            <div className="template-12-job">
-              <div className='template-12-job-head'>
-                <p className="template-12-date-location">March 2023 - Present</p>
-                <div>
-                  <h4> Senoir SAP Consultant</h4>
-                  <p className="template-12-company">SAP Consulting Group</p>
+            {experienceKeys.map((key) => (
+              <div key={key} className="template-12-job">
+                <div className='template-12-job-head'>
+                  <p className="template-12-date-location">{experienceData[key].startYear} - {experienceData[key].endYear}</p>
+                  <div>
+                    <h4>{experienceData[key].jobTitle}</h4>
+                    <p className="template-12-company">{experienceData[key].organizationName}</p>
+                  </div>
                 </div>
+                <ul>
+                  {experienceData[key].jobDescription && experienceData[key].jobDescription.map((desc, index) => (
+                    <li key={index}>{desc}</li>
+                  ))}
+                </ul>
               </div>
-              <ul>
-                <li>Provided SAP consulting services to multiple clients, helping to identify and address SAP system issues and process improvements.</li>
-                <li>Developed custom reports and interfaces between SAP and other systems to assist with data integration.</li>
-                <li>Led the design, development and implementation of complex SAP solutions to meet business objectives.</li>
-              </ul>
-            </div>
-            <div className="template-12-job">
-              <div className='template-12-job-head'>
-                <p className="template-12-date-location">May 2019 - February 2023</p>
-                <div>
-                  <h4>SAP Consultant</h4>
-                  <p className="template-12-company"> Consulting Group</p>
-                </div>
-              </div>
-              <ul>
-                <li>Collaborated with stakeholders to understand functional and technical requirements for SAP projects.</li>
-                <li>Ensured compliance with SAP standards, best practices, and change management policies.</li>
-                <li>Conducted system testing and user acceptance testing of SAP solutions.</li>
-              </ul>
-            </div>
+            ))}
           </section>
         </div>
         <div className='template-12-rightside-divs'>
@@ -140,29 +152,23 @@ const Template12 = () => {
                 />
               </div>
               <h3>CONTACTS</h3>
-              <p><FaPhone /> +012 3456 789</p>
-              <p><FaEnvelope /> Car@gmail.com</p>
-              <p><FaGlobe /> example.website.com</p>
-              <p><FaMapMarkerAlt /> Your street address here</p>
+              <p><FaPhone /> {getcontactData(fieldCd.Mobile)}</p>
+              <p><FaEnvelope /> {getcontactData(fieldCd.Email)}</p>
+              <p><FaGlobe /> {getcontactData(fieldCd.Website)}</p>
+              <p><FaMapMarkerAlt /> {getcontactData(fieldCd.Address)}, {getcontactData(fieldCd.City)} - {getcontactData(fieldCd.State)} ({getcontactData(fieldCd.Postal)})</p>
             </section>
             <section className="template-12-education">
               <h3>EDUCATION</h3>
-              <p>2017 - 2019</p>
-              <p>Master of Science in Business Analytics</p>
-              <p className="template-12-institute">University of California, Berkeley</p>
-              <p>2014 - 2017</p>
-              <p>Bachelor of Science in Business Analytics</p>
-              <p className="template-12-institute">University of California, Berkeley</p>
+              <p>{geteducationData(fieldCd.Startyear)} - {geteducationData(fieldCd.Endyear)}</p>
+              <p>{geteducationData(fieldCd.Degree)} in {geteducationData(fieldCd.Type)}</p>
+              <p className="template-12-institute">{geteducationData(fieldCd.University)}</p>
             </section>
             <section className="template-12-skills">
               <h3>SKILLS</h3>
               <ul>
-                <li>SAP Configuration </li>
-                <li>Business Analysis </li>
-                <li>Project Management </li>
-                <li>ABAP Programming </li>
-                <li>Data Migration </li>
-                <li>System Integration </li>
+                {Object.keys(skillsData).map((key) => (
+                  <li key={key}>{skillsData[key].skill}</li>
+                ))}
               </ul>
             </section>
           </div>
@@ -172,4 +178,13 @@ const Template12 = () => {
   );
 };
 
-export default Template12;
+const mapStateToProps = (state) => {
+  return {
+    contact: state.contactReducer,
+    education: state.educationReducer,
+    experience: state.experienceReducer,
+    skills: state.keyskillsReducer,
+  };
+};
+
+export default connect(mapStateToProps)(Template12);

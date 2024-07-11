@@ -20,6 +20,7 @@ import Features from './components/Feature';
 import Career from './components/Pages1/Career';
 import Profile from './components/Profile/components/Profile';
 
+
 function App() {
   const user = localStorage.getItem('token');
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/Detailfilling" element={<Detailfilling />} />
         <Route path="/Templete" element={<Templetes />} />
         <Route path="/career" element={<Career />} />
+       
         <Route path="/header" element={<Header />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/personal" element={<PersonalInformation />} />

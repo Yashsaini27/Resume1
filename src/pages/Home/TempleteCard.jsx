@@ -39,7 +39,7 @@ const TempleteCard = ({ data, thumbnail, settemplate, updatetemplate, resumedata
           <img
             style={{
               width: '100%',
-              height: '45vh',
+              height: '75vh',
               border: '3px solid black',
               opacity: isHovered ? 0.7 : 1, // Set opacity when hovered
             }}
