@@ -1,0 +1,160 @@
+.Temp7 {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .buttons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .edit-save-btn, .download-btn, .option-btn {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .download-btn {
+    background-color: green;
+  }
+  
+  .options {
+    display: flex;
+  }
+  
+  .option {
+    position: relative;
+    margin-right: 10px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    border: none;
+    background: none;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .option:hover .dropdown-content {
+    display: block;
+  }
+  
+  .resume-container {
+    display: flex;
+    width: 750px;
+    margin: auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+  }
+  
+  .left-section {
+    background-color: rgb(74, 74, 214);
+    color: white;
+    padding: 20px;
+    width: 30%;
+  }
+  
+  .profile-pic-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-pic {
+    border-radius: 50%;
+    border: 5px solid white;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+  }
+  
+  .name {
+    font-size: 24px;
+  }
+  
+  .designation {
+    font-size: 18px;
+  }
+  
+  .lsection-heading {
+    background-color: rgb(97, 138, 208);
+    padding: 5px;
+    margin-top: 20px;
+    text-align: left;
+    width:115%;
+    margin-left: -20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .rsection-heading {
+   /* background-color: rgb(97, 138, 208);*/
+    padding: 5px;
+    margin-top: 20px;
+    text-align: left;
+    width: calc(100% + 30px);
+    margin-left: -20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .remove-section {
+    cursor: pointer;
+    margin-left: auto;
+    color:black;
+  }
+  
+  .rsection-heading .remove-section {
+    cursor: pointer;
+    margin-left: 10px;
+    color: black;
+  }
+  
+  .contact-info {
+    margin-top: 10px;
+    text-align: left;
+  }
+  
+  .skills-list, .certificates-list, .languages-list {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: left;
+  }
+  
+  .right-section {
+    background-color: whitesmoke;
+    color: black;
+    padding: 20px;
+    width: 70%;
+  }
+  
+  .experience, .education, .awards, .achievements {
+    text-align: left;
+  }
+  
+  .year {
+    float: right;
+  }
+  
+  hr {
+    margin: 10px 0;
+  }
+  

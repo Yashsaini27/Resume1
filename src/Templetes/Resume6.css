@@ -1,0 +1,201 @@
+:root {
+    --font-family: Arial, sans-serif;
+    --theme-color: rgb(25, 25, 112);
+  }
+  .App {
+    padding: 20px;
+    margin: 20px;
+    font-family: var(--font-family);
+  }
+  
+  
+  
+  .edit-save-btn, .download-btn, .option-btn {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .download-btn {
+    background-color: green;
+  }
+  
+  .options {
+    display: flex;
+  }
+  
+  .option {
+    position: relative;
+    margin-right: 10px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    border: none;
+    background: none;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .option:hover .dropdown-content {
+    display: block;
+  }
+  .template-12-resume-container {
+    display: flex;
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .template-12-resume-header {
+    width: 260px;
+    letter-spacing: 4px;
+  }
+  
+  .template-12-resume-left {
+    padding: 11px;
+    width: 550px;
+  }
+  
+  .template-12-resume-right {
+    flex: 1;
+    background: #333;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .template-12-photo {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .template-12-photo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 20%;
+    border: 5px solid #fff;
+    margin: auto;
+  }
+  
+  .template-12-contacts p {
+    text-decoration: underline;
+  }
+  
+  .template-12-resume-header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
+  .template-12-resume-header h2 {
+    margin: 5px 0;
+    font-size: 20px;
+    color: #888;
+  }
+  
+  .template-12-work-experience,
+  .template-12-education {
+    margin-bottom: 20px;
+  }
+  
+  .template-12-profile {
+    margin-bottom: 20px;
+    background-color: #dfdede;
+  }
+  
+  .template-12-skills {
+   
+    color: #fff;
+  }
+  
+  .template-12-rightside-divs {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+  }
+  
+  .template-12-profile h3,
+  .template-12-work-experience h3,
+  .template-12-projects h3,
+  .template-12-achievements h3,
+  .template-12-education h3,
+  .template-12-contacts h3,
+  .template-12-skills h3,
+  .template-12-certificates h3 ,
+  .template-12-awards h3,
+  .template-12-languages h3{
+    font-size: 20px;
+    margin-bottom: 10px;
+    padding: 23px;
+    text-decoration: underline;
+  
+  }
+  
+  .template-12-job {
+    margin-bottom: 20px;
+  }
+  
+  .template-12-job-head {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .template-12-job h4 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .template-12-company {
+    font-size: 16px;
+    font-style: italic;
+    color: #888;
+  }
+  
+  .template-12-date-location {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+    padding: 3px;
+    border-top: 2px solid #aea8a8;
+    border-bottom: 2px solid #aea8a8;
+    height: 30px;
+  }
+  
+  .template-12-contacts p,
+  .template-12-education p,
+  .template-12-skills p {
+    margin: 5px 0;
+  }
+  
+  
+  @media (max-width: 800px) {
+    .template-12-resume-container {
+        flex-direction: column;
+    }
+  
+    .template-12-resume-left {
+        border-right: none;
+        
+    }
+  }
+  
+  
+  
